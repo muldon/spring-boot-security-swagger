@@ -25,6 +25,11 @@ public class EmployeeController {
 	public List<Employee> firstPage() {
 		return employees;
 	}
+	
+//	@RequestMapping(value = "/employees2", method = RequestMethod.GET, produces = "application/json")
+//	public List<Employee> firstPage2() {
+//		return employees;
+//	}
 
 	@DeleteMapping(path = { "/{id}" })
 	public Employee delete(@PathVariable("id") int id) {
