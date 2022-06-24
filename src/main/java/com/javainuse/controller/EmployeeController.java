@@ -3,6 +3,7 @@ package com.javainuse.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,18 +13,29 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.javainuse.model.Employee;
+import com.javainuse.service.HomeService;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 @RestController
 @SecurityRequirement(name = "javainuseapi")
 public class EmployeeController {
+	@Autowired
+	HomeService homeService;
 
 	private List<Employee> employees = createList();
 
 	@RequestMapping(value = "/employees", method = RequestMethod.GET, produces = "application/json")
 	public List<Employee> firstPage() {
+		homeService.homePage(1);
+		homeService.page1();
 		return employees;
+	}
+	
+	@RequestMapping(value = "/employee/{id}", method = RequestMethod.GET, produces = "application/json")
+	public Employee getEmployee() {
+		homeService.homePage(1);
+		return employees.get(0);
 	}
 	
 //	@RequestMapping(value = "/employees2", method = RequestMethod.GET, produces = "application/json")
