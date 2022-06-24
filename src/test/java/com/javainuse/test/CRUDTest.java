@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class CRUDTest1 {
+class CRUDTest {
 	
 	@Autowired
 	HomeService homeService;
@@ -53,7 +53,7 @@ class CRUDTest1 {
 	@Test	
 	@Order(5)
 	public void findByIdEmpresa()  {
-		assertTrue(true);		
+		assertTrue(false);		
 	}
 	
 
