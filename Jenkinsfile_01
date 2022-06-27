@@ -8,6 +8,15 @@ pipeline {
     }
 
     stages {
+        stage("Checking Java") {
+            steps {
+                sh '''
+                env | grep -e PATH -e JAVA_HOME
+                which java
+                java -version
+                '''
+            }
+        }
         stage("Build") {
             steps {
                 sh "mvn -version"
