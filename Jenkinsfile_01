@@ -33,6 +33,7 @@ pipeline {
     post {
         always {
             cleanWs()
+            emailext(attachLog: true, body: 'A Test EMail', subject: 'Test', to: 'estudantecomp@gmail.com')       
         }
     }
 }
