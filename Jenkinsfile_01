@@ -31,9 +31,9 @@ pipeline {
     }
 
     post {
-        always {
+        failure {
             mail to: "estudantecomp@gmail.com",
-            subject: "Test Email from jenkins",
+            subject: "Jenkins pipeline containing errors",
             body: "Test"                       
         }
     }
