@@ -1,6 +1,6 @@
 # Para uso no jenkins
-FROM maven:3.6.0-jdk-13
-
-RUN useradd -m -u 1000 -s /bin/bash jenkins
-
-RUN yum install -y openssh-clients
+FROM openjdk:11
+VOLUME /tmp
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["sh", "-c", "java ${JAVA_OPTS} -jar /app.jar"]
