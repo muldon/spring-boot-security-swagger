@@ -32,7 +32,7 @@ pipeline {
 
     post {
         always {
-            mail to: "estudantecomp@gmail.com@gmail.com",
+            mail to: "estudantecomp@gmail.com",
             subject: "Test Email from jenkins",
             body: "Test"                       
         }
