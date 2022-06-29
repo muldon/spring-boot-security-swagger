@@ -31,8 +31,10 @@ pipeline {
     }
 
     post {
-        always {
-            cleanWs()
+        failure {
+            mail to: "estudantecomp@gmail.com",
+            subject: "Jenkins pipeline containing errors",
+            body: "Test"                       
         }
     }
 }
