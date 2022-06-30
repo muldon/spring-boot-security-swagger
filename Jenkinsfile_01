@@ -38,7 +38,7 @@ pipeline {
         }
         stage("Build docker image") {
             steps {
-                sh "docker build -t rodrigofgs/spring-boot-swagger-test:latest"                
+                sh "docker build -t rodrigofgs/spring-boot-swagger-test:latest ."                
             }
         }
     }
