@@ -9,7 +9,9 @@ pipeline {
 
     stages {
          stage('Initialize'){
-            sh "docker ps"
+             steps {
+                sh "docker ps"                
+             }
         }
         stage("Checking Java") {
             steps {
