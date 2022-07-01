@@ -8,6 +8,14 @@ pipeline {
     }
 
     stages {
+         stage('Checking docker'){
+             steps {
+                 script {
+                    sh "docker ps"                     
+                 }
+                
+             }
+        }
         stage("Checking Java") {
             steps {
                 sh '''
@@ -26,6 +34,11 @@ pipeline {
         stage("Test") {
             steps {
                 sh "mvn test"                
+            }
+        }
+        stage("Build docker image") {
+            steps {
+                sh "docker build -t rodrigofgs/spring-boot-swagger-test:latest ."                
             }
         }
     }
