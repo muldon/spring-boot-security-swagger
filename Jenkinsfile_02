@@ -21,17 +21,12 @@ pipeline {
                  script {
                     sh "docker ps"                     
                  }                
-             }
-	     steps {
                 sh '''
                 env | grep -e PATH -e JAVA_HOME
                 which java
                 java -version
                 '''
-            }
-	    steps{
-	    	 sh "mvn -version"
-	    }
+                sh "mvn -version"	    
         }       
         stage("Build") {
             steps {               
