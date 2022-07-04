@@ -23,10 +23,10 @@ pipeline {
 	}
 	stage('Abort pipeline Stage') {
             when {
-                expression { env.GIT_COMMIT_MSG.contains("aaa") }
+                expression { !env.GIT_COMMIT_MSG.contains("aaa") }
             }
             steps {
-                echo "Running the conditional stage aaaaaaaaaa ok"
+                echo "Not running the rest of the pipeline"
 		error("Invalid target environment")
             }
         }
