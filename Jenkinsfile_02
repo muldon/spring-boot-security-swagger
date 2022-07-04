@@ -16,7 +16,8 @@ pipeline {
 		script {
 		    env.GIT_COMMIT_MSG = sh (script: 'git log -1 --pretty=%B ${GIT_COMMIT}', returnStdout: true).trim()
 		    sh 'commit message: ${GIT_COMMIT_MSG}' 
-		    sh 'simple test: env.GIT_MSG.contains("#fullbuild")' 
+		    env.CONTAINS_MSG = env.GIT_COMMIT_MSG.contains("aaa")
+		    sh 'simple test contains aaa? : ${CONTAINS_MSG}' 
 		}
 	    }
 	}
