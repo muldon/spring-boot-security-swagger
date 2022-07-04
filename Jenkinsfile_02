@@ -18,7 +18,7 @@ pipeline {
 	            env.CONTAINS_MSG = env.GIT_COMMIT_MSG.contains("aaa")  		     
 		}
 		sh 'echo commit message: ""${GIT_COMMIT_MSG}""' 
-		echo 'simple test contains aaa? : ""${CONTAINS_MSG}""' 		
+		echo "simple test contains aaa? : ${CONTAINS_MSG}" 		
 	    }
 	}
 	stage('Abort pipeline Stage') {
