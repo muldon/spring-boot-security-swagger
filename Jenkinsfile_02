@@ -11,26 +11,30 @@ pipeline {
     }
 
     stages {
-         stage('Checking docker'){
+         stage('Checking variables'){
+             steps {
+                 sh 'printenv'                
+             }
+        }
+	 stage('Checking docker,java'){
              steps {
                  script {
                     sh "docker ps"                     
-                 }
-                
+                 }                
              }
-        }
-        stage("Checking Java") {
-            steps {
+	     steps {
                 sh '''
                 env | grep -e PATH -e JAVA_HOME
                 which java
                 java -version
                 '''
             }
-        }
+	    steps{
+	    	 sh "mvn -version"
+	    }
+        }       
         stage("Build") {
-            steps {
-                sh "mvn -version"
+            steps {               
                 sh "mvn clean install -Dmaven.test.skip=true"
             }
         }
@@ -41,23 +45,20 @@ pipeline {
         }
         stage("Build docker image") {
             steps {
-                sh 'printenv'
                 sh 'docker build -t rodrigofgs/spring-boot-swagger-test:""$BUILD_ID"" .'                
             }
         }
         stage('Login') {
-
-			steps {
-				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-			}
-		}
+            steps {
+		sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+	    }
+	}
         
         stage('Push') {
-
-			steps {
-				sh 'docker push rodrigofgs/spring-boot-swagger-test:""$BUILD_ID""'
-			}
-		}
+	    steps {
+		sh 'docker push rodrigofgs/spring-boot-swagger-test:""$BUILD_ID""'
+	      }
+	}
     }
 
     post {
