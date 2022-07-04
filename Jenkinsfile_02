@@ -18,9 +18,7 @@ pipeline {
         }
 	 stage('Checking docker,java'){
              steps {
-                 script {
-                    sh "docker ps"                     
-                 }                
+                sh "docker ps"                                                      
                 sh '''
                 env | grep -e PATH -e JAVA_HOME
                 which java
