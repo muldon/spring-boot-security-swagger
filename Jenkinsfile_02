@@ -24,7 +24,8 @@ pipeline {
                 which java
                 java -version
                 '''
-                sh "mvn -version"	    
+                sh "mvn -version"	
+	     }
         }       
         stage("Build") {
             steps {               
