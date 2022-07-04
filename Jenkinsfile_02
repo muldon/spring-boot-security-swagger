@@ -15,19 +15,19 @@ pipeline {
 	    steps {
 		script {
 		    env.GIT_COMMIT_MSG = sh (script: 'git log -1 --pretty=%B ${GIT_COMMIT}', returnStdout: true).trim()
-	            env.CONTAINS_MSG = env.GIT_COMMIT_MSG.contains("aaa")  		     
+	            env.CONTAINS_MSG = env.GIT_COMMIT_MSG.contains("#build")  		     
 		}
-		sh 'echo commit message: ""${GIT_COMMIT_MSG}""' 
-		echo "simple test contains aaa? : ${CONTAINS_MSG}" 		
+		echo "commit message: ${GIT_COMMIT_MSG}"
+		echo "Run pipeline ? : ${CONTAINS_MSG}" 		
 	    }
 	}
 	stage('Abort pipeline Stage') {
             when {
-                expression { !env.GIT_COMMIT_MSG.contains("aaa") }
+                expression { !env.GIT_COMMIT_MSG.contains("#build") }
             }
             steps {
                 echo "Not running the rest of the pipeline"
-		error("Invalid target environment") 
+		error("Not running the rest of the pipeline") 
             }
         }
 	
