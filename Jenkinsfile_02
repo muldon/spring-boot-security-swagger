@@ -27,7 +27,7 @@ pipeline {
             }
             steps {
                 echo "Not running the rest of the pipeline"
-		error("Invalid target environment")
+		error("Invalid target environment") 
             }
         }
 	
