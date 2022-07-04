@@ -23,7 +23,7 @@ pipeline {
 	}
 	stage('Abort pipeline Stage') {
             when {
-                expression { return ${CONTAINS_MSG} }
+                expression { ${CONTAINS_MSG} }
             }
             steps {
                 echo "Running the conditional stage aaaaaaaaaa ok"
