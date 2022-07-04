@@ -15,10 +15,10 @@ pipeline {
 	    steps {
 		script {
 		    env.GIT_COMMIT_MSG = sh (script: 'git log -1 --pretty=%B ${GIT_COMMIT}', returnStdout: true).trim()
-		    sh 'commit message: ${GIT_COMMIT_MSG}' 
-		    env.CONTAINS_MSG = env.GIT_COMMIT_MSG.contains("aaa")
-		    sh 'simple test contains aaa? : ${CONTAINS_MSG}' 
+	            env.CONTAINS_MSG = env.GIT_COMMIT_MSG.contains("aaa")  		     
 		}
+		echo 'commit message: ${GIT_COMMIT_MSG}' 
+		echo 'simple test contains aaa? : ${CONTAINS_MSG}' 		
 	    }
 	}
 	stage('Abort pipeline Stage') {
