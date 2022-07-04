@@ -11,10 +11,18 @@ pipeline {
     }
 
     stages {
+         stage('get_commit_msg') {
+	    steps {
+		script {
+		    env.GIT_COMMIT_MSG = sh (script: 'git log -1 --pretty=%B ${GIT_COMMIT}', returnStdout: true).trim()
+		    sh 'commit message: ${GIT_COMMIT_MSG}' 
+		}
+	    }
+	}
          stage('Checking variables'){
              steps {
                  sh 'printenv'                
-             }
+             }	      
         }
 	 stage('Checking docker,java'){
              steps {
