@@ -42,7 +42,7 @@ pipeline {
         stage("Build docker image") {
             steps {
                 sh 'printenv'
-                sh 'docker build -t rodrigofgs/spring-boot-swagger-test:""BUILD_ID"" .'                
+                sh 'docker build -t rodrigofgs/spring-boot-swagger-test:""$BUILD_ID"" .'                
             }
         }
         stage('Login') {
@@ -55,7 +55,7 @@ pipeline {
         stage('Push') {
 
 			steps {
-				sh 'docker push rodrigofgs/spring-boot-swagger-test:""BUILD_ID""'
+				sh 'docker push rodrigofgs/spring-boot-swagger-test:""$BUILD_ID""'
 			}
 		}
     }
