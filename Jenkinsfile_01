@@ -1,7 +1,11 @@
 #!groovy
 
 pipeline {
-    agent any
+    agent {label 'linux'}
+    
+    environment {
+		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
+	}
 
     tools {
         maven "maven3" // name of the maven configured in the Global Tools Configuration page
@@ -41,6 +45,19 @@ pipeline {
                 sh "docker build -t rodrigofgs/spring-boot-swagger-test:latest ."                
             }
         }
+        stage('Login') {
+
+			steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
+		}
+        
+        stage('Push') {
+
+			steps {
+				sh 'docker push rodrigofgs/spring-boot-swagger-test:latest'
+			}
+		}
     }
 
     post {
@@ -49,5 +66,8 @@ pipeline {
             subject: "Jenkins pipeline containing errors",
             body: "Test"                       
         }
+        always {
+			sh 'docker logout'
+		}
     }
 }
