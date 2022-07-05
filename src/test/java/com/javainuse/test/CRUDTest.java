@@ -52,7 +52,13 @@ class CRUDTest {
 	
 	@Test	
 	@Order(5)
-	public void findByIdEmpresa()  {
+	public void findByIdTest()  {
+		assertTrue(true);		
+	}
+	
+	@Test	
+	@Order(6)
+	public void findByCriteriaTest()  {
 		assertTrue(true);		
 	}
 	
