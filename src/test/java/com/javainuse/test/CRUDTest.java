@@ -68,5 +68,11 @@ class CRUDTest {
 		assertTrue(true);		
 	}
 	
+	@Test	
+	@Order(8)
+	public void findByCriteria3Test()  {
+		assertTrue(true);		
+	}
+	
 
 }
