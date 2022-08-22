@@ -1,0 +1,14 @@
+Spring Boot Project with:
+
+- JAVA 11 -> Jenkins does not support Java 17 yet
+- Spring MVC
+- Spring AOP
+- Swagger
+- Jenkins pipelines
+- JUnit tests   
+    if we use the default configuration of the Maven Surefire Plugin, it runs all test methods found from a test class if the name of the test class:
+    Starts or ends with the string: Test.
+    Ends with the string: Tests.
+    Ends with the string: TestCase.
+
+
